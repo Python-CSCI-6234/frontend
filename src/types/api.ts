@@ -4,6 +4,7 @@ export interface Email {
   from: string;
   date: string;
   body: string;
+  labelIds?: string[];
 }
 
 export interface EmailSummary {

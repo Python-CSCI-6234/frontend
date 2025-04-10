@@ -74,10 +74,10 @@ export const MessageThreadFull = React.forwardRef<
       >
         <ThreadContent className="py-4" />
       </div>
+      <MessageSuggestions />
       <div className="p-4">
         <MessageInput contextKey={contextKey} />
       </div>
-      <MessageSuggestions />
     </div>
   );
 });

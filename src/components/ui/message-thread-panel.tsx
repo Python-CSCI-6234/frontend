@@ -1,7 +1,6 @@
 "use client";
 
 import { MessageInput } from "@/components/ui/message-input";
-import { MessageSuggestions } from "@/components/ui/message-suggestions";
 import { ThreadContent } from "@/components/ui/thread-content";
 import { ThreadHistory } from "@/components/ui/thread-history";
 import { cn } from "@/lib/utils";
@@ -109,7 +108,6 @@ export const MessageThreadPanel = React.forwardRef<
         >
           <ThreadContent />
         </div>
-        <MessageSuggestions />
         <div className="p-4">
           <MessageInput contextKey={contextKey} />
         </div>
