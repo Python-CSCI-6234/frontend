@@ -1,77 +1,83 @@
-# Tambo Template
+# Email Organizer Frontend
 
-This is a starter NextJS app with Tambo hooked up to get your AI app development started quickly.
+A modern web application built with Next.js for organizing and managing emails efficiently.
 
-## Get Started
+## Technologies
 
-1. `npm install`
+- [Next.js](https://nextjs.org/) 15.2.3
+- [React](https://react.dev/) 19
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [@tambo-ai/react](https://www.npmjs.com/package/@tambo-ai/react)
+- [NextAuth.js](https://next-auth.js.org/) for authentication
 
-2. Rename `example.env.local` to `.env.local` and add your real tambo API key. You can get a tambo API key for free [here](https://tambo.co/dashboard), or by running `npx tambo init`
+## Getting Started
 
-3. Run `npm run dev` and go to `localhost:3000` to use the app!
+### Prerequisites
 
-## Customizing
+- Node.js (LTS version recommended)
+- npm or yarn
 
-### Change what components tambo can control
+### Installation
 
-You can see how the `ProductCard` is registered with tambo in `src/app/layout.tsx`:
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+3. Copy the example environment file and configure your environment variables:
+   ```bash
+   cp example.env.local .env.local
+   ```
+4. Update the `.env.local` file with your configuration
 
-```tsx
-const tamboComponents: TamboComponent[] = [
-  {
-    name: "ProductCard",
-    description: "A product card component that displays product information with customizable pricing, discounts, and styling. Perfect for demonstrating interactive UI elements!", // Here we tell tambo what the component is for and when to use it
-    component: ProductCard, // Reference to the actual component definition
-    propsSchema: z.object({
-      name: z.string().describe("The name of the product"),
-      price: z.number().describe("The price of the product"),
-      description: z.string().describe("The description of the product"),
-      discountPercentage: z.number().describe("The discount percentage of the product"),
-      accentColor: z.enum(["indigo", "emerald", "rose", "amber"]).describe("The accent color of the product"),
-      inStock: z.boolean().describe("Whether the product is in stock"),
-    }), // Here we tell tambo what props the component expects
-    associatedTools: [productsTool] // associate the products tool with the component so Tambo fetches real products when generating this component's props
-  },
-  // Add more components for Tambo to control here!
-];
+### Development
 
-...
+Run the development server:
 
-        <TamboProvider
-          apiKey={process.env.NEXT_PUBLIC_TAMBO_API_KEY!}
-          components={tamboComponents}
-        >
-          {children}
-        </TamboProvider>
+```bash
+npm run dev
+# or
+yarn dev
 ```
 
-The example ProductCard component demonstrates several key features:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-- Different prop types (strings, numbers, booleans, enums)
-- Interactive elements (Add to Cart button)
-- Conditional rendering (discount display, stock status)
-- Dynamic styling (color variations)
+### Build
 
-Update the `tamboComponents` array with any component(s) you want tambo to be able to use in a response!
+To create a production build:
 
-You can find more information about the options [here](https://tambo.co/docs/concepts/registering-components)
-
-### Change where component responses are shown
-
-The components used by tambo are shown alongside the message resopnse from tambo within the chat thread, but you can have the result components show wherever you like by accessing the latest thread message's `renderedComponent` field:
-
-```tsx
-const { thread } = useTambo();
-const latestComponent =
-  thread?.messages[thread.messages.length - 1]?.renderedComponent;
-
-return (
-  <div>
-    {latestComponent && (
-      <div className="my-custom-wrapper">{latestComponent}</div>
-    )}
-  </div>
-);
+```bash
+npm run build
+# or
+yarn build
 ```
 
-Since tambo keeps the thread state updated, the latest message will automatically update and cause a re-render whenever there is a new component to show!
+To start the production server:
+
+```bash
+npm run start
+# or
+yarn start
+```
+
+## Project Structure
+
+```
+
+## Features
+
+- Email organization and management
+- Modern, responsive UI with Tailwind CSS
+- Authentication system
+- Markdown support with syntax highlighting
+- Type-safe development with TypeScript
+
+## Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Create production build
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint for code quality
